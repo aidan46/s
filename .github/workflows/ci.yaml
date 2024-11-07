@@ -15,4 +15,4 @@ jobs:
           echo ${ github.ref_name }
           echo "Building some shit"
       - name: Release binaries
-        run: echo "Running some action to release shit"
+        run: echo "Running some action to release shit after building"
