@@ -1,0 +1,18 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.ref_type == 'tag' && startsWith(github.ref_name, 'polka-storage-v')
+    steps:
+      - name: Build in release mode
+        run: |
+          echo ${ github.ref_name }
+          echo "Building some shit"
+      - name: Release binaries
+        run: echo "Running some action to release shit"
