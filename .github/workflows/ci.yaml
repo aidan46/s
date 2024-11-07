@@ -13,7 +13,6 @@ jobs:
       startsWith(github.ref_name, 'polka-storage-v') &&
       contains('
         refs/heads/main
-        refs/heads/new-branch
       ', github.ref)
     steps:
       - name: Build in release mode
