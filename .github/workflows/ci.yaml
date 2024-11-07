@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Build in release mode
         run: |
-          echo ${ github.ref_name }
+          echo ${GITHUB_REF##*/}
           echo "Building some shit"
       - name: Release binaries
         run: echo "Running some action to release shit after building"
