@@ -8,7 +8,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.ref_type == 'tag' && startsWith(github.ref_name, 'polka-storage-v') && contains('refs/heads/main', github.ref)
+    if: |
+      github.ref_type == 'tag' &&
+      startsWith(github.ref_name, 'polka-storage-v') &&
+      contains('
+        refs/heads/main
+        refs/heads/new-branch
+      ', github.ref)
     steps:
       - name: Build in release mode
         run: |
