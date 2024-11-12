@@ -25,6 +25,6 @@ jobs:
 
       - name: 'Build Inventory Image'
         run: |
-          docker build . --tag ghcr.io/aidan46/test_builderino:latest
-          docker push ghcr.io/aidan46/test_builderino:latest
+          docker build . --tag ghcr.io/aidan46/test_builder:latest
+          docker push ghcr.io/aidan46/test_builder:latest
 
