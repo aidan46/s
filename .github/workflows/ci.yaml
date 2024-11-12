@@ -9,6 +9,9 @@ jobs:
   build_tag_push_to_ghrc:
     runs-on: ubuntu-latest
     if: github.ref_type == 'tag' && startsWith(github.ref_name, 'polka-storage-v')
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: 'Checkout GitHub Action'
         uses: actions/checkout@main
