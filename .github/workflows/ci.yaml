@@ -6,13 +6,22 @@ on:
       - "**"
 
 jobs:
-  build:
+  build_tag_push_to_ghrc:
     runs-on: ubuntu-latest
-    if: github.ref_type == 'tag' && startsWith(github.ref_name, 'polka-storage-v') && contains('refs/heads/main', github.ref)
+    if: github.ref_type == 'tag' && startsWith(github.ref_name, 'polka-storage-v')
     steps:
-      - name: Build in release mode
+      - name: 'Checkout GitHub Action'
+        uses: actions/checkout@main
+
+      - name: 'Login to GitHub Container Registry'
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{github.actor}}
+          password: ${{secrets.GITHUB_TOKEN}}
+
+      - name: 'Build Inventory Image'
         run: |
-          echo ${GITHUB_REF##*/}
-          echo "Building some shit"
-      - name: Release binaries
-        run: echo "Running some action to release shit after building"
+          docker build . --tag ghcr.io/jemoeder/test_builderino:latest
+          docker push ghcr.io/jemoeder/test_builderino:latest
+
